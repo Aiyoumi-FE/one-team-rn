@@ -1,19 +1,22 @@
 import React, { Component } from 'react';
 import { View, Text, Button, Image, TextInput, StyleSheet } from 'react-native';
 
-export default class Register extends Component {
+export default class Me extends Component {
     constructor(props) {
         super(props);
+        this.state = {};
     }
 
     static navigationOptions = {
-        title: '注册',
+        title: '我的',
     }
 
     render() {
+        const navigate = this.props.navigation;
         return (
             <View>
-                <Text>这是注册的内容</Text>
+                {/* <Button title="我的页面" onPress={() => navigate('Home')} /> */}
+                <Text>这是我的的内容</Text>
             </View>
         );
     }

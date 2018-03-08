@@ -8,24 +8,20 @@ export default class Home extends Component {
     }
 
     static navigationOptions = {
-        tabBarLabel: '首页',
-        tabBarIcon: ({tintColor}) => (<Image source={require('../../images/index.png')} style={[{tintColor: tintColor}, styles.tabIcon]}/>),
+        title: '首页',
     }
 
     render() {
         const navigate = this.props.navigation;
-        return (
-            <View>
-                <Button title="首页" onPress={() => navigate('Register')} />
-                <Text>这是首页的内容</Text>
-            </View>
-        );
+        const isLogin = false;
+        if (isLogin) {
+            // navigate('Login');
+        } else {
+            return (
+                <View>
+                    <Text>这是首页的内容</Text>
+                </View>
+            );
+        }
     }
 }
-
-const styles = StyleSheet.create({
-    tabIcon: {
-        width: 24,
-        height: 24,
-    }
-});

@@ -8,24 +8,16 @@ export default class Notice extends Component {
     }
 
     static navigationOptions = {
-        tabBarLabel: '通知',
-        tabBarIcon: ({tintColor}) => (<Image source={require('../../images/notice.png')} style={[{tintColor: tintColor}, styles.tabIcon]}/>),
+        title: '通知',
     }
 
     render() {
         const navigate = this.props.navigation;
         return (
             <View>
-                <Button title="通知" onPress={() => navigate('Home')} />
+                {/* <Button title="通知" onPress={() => navigate('Home')} /> */}
                 <Text>这是通知的内容</Text>
             </View>
         );
     }
 }
-
-const styles = StyleSheet.create({
-    tabIcon: {
-        width: 24,
-        height: 24,
-    },
-});
