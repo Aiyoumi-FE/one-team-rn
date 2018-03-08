@@ -17,7 +17,7 @@ const App = StackNavigator({
 }, {
     initialRouteName: 'Home',
     navigationOptions: {
-      headerStyle: { 
+      headerStyle: {
         backgroundColor: '#33cde5',
         opacity: 0.8,
       },

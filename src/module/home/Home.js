@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { View, Text, Button, Image, TextInput, StyleSheet } from 'react-native';
-import Login from '@module/user/Login';
 
 export default class Home extends Component {
     constructor(props) {
