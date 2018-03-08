@@ -3,8 +3,6 @@ import { StackNavigator } from 'react-navigation';
 import TabNav from '@module/common/TabNav';
 import Login from '@module/user/Login';
 import Register from '@module/user/Register';
-import Notice from '@module/notice/Notice';
-import Me from '@module/user/Me';
 
 const Components = {
   Login: { screen: Login, path: 'app/login' },
@@ -20,7 +18,8 @@ const App = StackNavigator({
     initialRouteName: 'Home',
     navigationOptions: {
       headerStyle: { 
-        backgroundColor: 'blue',
+        backgroundColor: '#33cde5',
+        opacity: 0.8,
         height: 40,
       },
       cardStack: {

@@ -37,8 +37,8 @@ const TabNav = TabNavigator({
         lazyLoad: false,
         backBehavior: 'none',
         tabBarOptions: {
-            activeTintColor: '#ff8500',
-            inactiveTintColor: '#999',
+            activeTintColor: '#4BC1D2',
+            inactiveTintColor: '#666',
             showIcon: true,
             indicatorStyle: {
                 height: 0
