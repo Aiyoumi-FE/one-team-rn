@@ -32,16 +32,16 @@ const TabNav = TabNavigator({
     }
 }, {
         tabBarPosition: 'bottom',
-        swipeEnabled: false,
-        animationEnabled: false,
-        lazyLoad: false,
+        swipeEnabled: true,
+        animationEnabled: true,
+        lazyLoad: true,
         backBehavior: 'none',
         tabBarOptions: {
             activeTintColor: '#4BC1D2',
             inactiveTintColor: '#666',
             showIcon: true,
             indicatorStyle: {
-                height: 0
+                height: 3
             },
             style: {
                 backgroundColor: '#fff',

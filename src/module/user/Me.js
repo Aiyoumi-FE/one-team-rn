@@ -12,10 +12,9 @@ export default class Me extends Component {
     }
 
     render() {
-        const navigate = this.props.navigation;
+        const { goBack } = this.props.navigation;
         return (
             <View>
-                {/* <Button title="我的页面" onPress={() => navigate('Home')} /> */}
                 <Text>这是我的的内容</Text>
             </View>
         );

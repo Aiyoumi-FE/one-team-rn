@@ -20,7 +20,6 @@ const App = StackNavigator({
       headerStyle: { 
         backgroundColor: '#33cde5',
         opacity: 0.8,
-        height: 40,
       },
       cardStack: {
         gesturesEnabled: true
