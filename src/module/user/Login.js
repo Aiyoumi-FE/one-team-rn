@@ -1,15 +1,32 @@
 import React, { Component } from 'react';
-import { View, Text, Button, Image, TextInput, StyleSheet } from 'react-native';
+import { View, Text, Button, TouchableOpacity, Image, TextInput, Alert, StyleSheet } from 'react-native';
 
 export default class Login extends Component {
     constructor(props) {
         super(props);
-        this.state = {};
+        this.state = {
+            email: '',
+            password: ''
+        };
     }
 
     static navigationOptions = {
         title: '登录',
-        headerStyle: { borderBottomWidth: 1, borderBottomColor: '#e2e2e2' }
+        // 去掉安卓导航条底部阴影用 elevation: 0，iOS下用 shadowOpacity: 0
+        headerStyle: { height: 40, borderBottomWidth: 1, borderBottomColor: '#e2e2e2', elevation: 0 },
+        headerTitleStyle: { fontSize: 16, color: '#333', alignItems: 'center' },
+    }
+
+    handleLogin() {
+        const { email, password } = this.state;
+        const regExp = {
+            email: /^[\w-]+@[\w-]+\.[a-zA-Z]{2,3}$/,
+        };
+
+        if (!regExp.email.test(email)) {
+            Alert.alert('提示', '请输入正确的邮箱格式');
+            return;
+        }
     }
 
     render() {
@@ -25,20 +42,25 @@ export default class Login extends Component {
                     placeholder="邮箱"
                     placeholderTextColor="gray"
                     underlineColorAndroid="transparent"
-                    onChangeText={(text) => this.setState({text})}
-                    value={this.state.text}
+                    onChangeText={(email) => this.setState({email})}
+                    value={this.state.email}
                 />
                 <TextInput
                     style={ styles.textInput }
                     placeholder="密码"
+                    password={true}
                     placeholderTextColor="gray"
                     underlineColorAndroid="transparent"
-                    onChangeText={(text) => this.setState({text})}
-                    value={this.state.text}
+                    onChangeText={(password) => this.setState({password})}
+                    value={this.state.password}
                 />
-                <Text style={ styles.forgetPsd }>忘记登录密码</Text>
-                <Button title="登录" onPress={() => navigate('Register')} style={ styles.button } />
-                <Text style={ styles.bottomText }>还没有加入 One Team？<Text style={{ color: '#0b9dff' }}>点击这里</Text>加入吧！</Text>
+                <Text onPress={() => navigate('Register')} style={ styles.forgetPsd }>忘记登录密码</Text>
+                <TouchableOpacity activeOpacity={0.2} focusedOpacity={0.5} onPress={this.handleLogin.bind(this)}>
+                    <View style={ styles.button }>
+                        <Text style={{color:'#fff'}}>登录</Text>
+                    </View>
+                </TouchableOpacity>
+                <Text style={ styles.bottomText }>还没有加入 One Team？<Text onPress={() => navigate('Register')} style={{ color: '#0b9dff' }}>点击这里</Text>加入吧！</Text>
             </View>
         );
     }
@@ -68,6 +90,7 @@ const styles = StyleSheet.create({
         paddingBottom: 0,
         paddingLeft: 10,
         borderWidth: 1,
+        borderRadius: 5,
         borderColor: '#797979'
     },
     forgetPsd: {
@@ -75,9 +98,13 @@ const styles = StyleSheet.create({
         marginBottom: 20
     },
     button: {
-        backgroundColor: '#09f'
+        height: 35,
+        alignItems: 'center',
+        justifyContent: 'center',
+        backgroundColor: '#09f',
+        borderRadius: 5
     },
     bottomText: {
-        marginTop: 5
+        marginTop: 10
     }
 });
