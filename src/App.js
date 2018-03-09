@@ -18,7 +18,7 @@ const App = StackNavigator({
     initialRouteName: 'Home',
     navigationOptions: {
       headerStyle: {
-        backgroundColor: '#33cde5',
+        backgroundColor: '#ffffff',
         opacity: 0.8,
       },
       cardStack: {
