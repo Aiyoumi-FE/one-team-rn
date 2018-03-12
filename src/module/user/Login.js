@@ -12,9 +12,6 @@ export default class Login extends Component {
 
     static navigationOptions = {
         title: '登录',
-        // 去掉安卓导航条底部阴影用 elevation: 0，iOS下用 shadowOpacity: 0
-        headerStyle: { height: 40, borderBottomWidth: 1, borderBottomColor: '#e2e2e2', elevation: 0 },
-        headerTitleStyle: { fontSize: 16, color: '#333', alignItems: 'center' },
     }
 
     handleLogin() {
@@ -33,34 +30,34 @@ export default class Login extends Component {
         const navigate = this.props.navigation.navigate;
 
         return (
-            <View style={ styles.view }>
-                <View style={ styles.graphicWrap }>
-                    <Image source={require('@images/graphic.png')} style={ styles.graphic } />
+            <View style={styles.view}>
+                <View style={styles.graphicWrap}>
+                    <Image source={require('@images/graphic.png')} style={styles.graphic} />
                 </View>
                 <TextInput
-                    style={ styles.textInput }
+                    style={styles.textInput}
                     placeholder="邮箱"
                     placeholderTextColor="gray"
                     underlineColorAndroid="transparent"
-                    onChangeText={(email) => this.setState({email})}
+                    onChangeText={(email) => this.setState({ email })}
                     value={this.state.email}
                 />
                 <TextInput
-                    style={ styles.textInput }
+                    style={styles.textInput}
                     placeholder="密码"
                     password={true}
                     placeholderTextColor="gray"
                     underlineColorAndroid="transparent"
-                    onChangeText={(password) => this.setState({password})}
+                    onChangeText={(password) => this.setState({ password })}
                     value={this.state.password}
                 />
-                <Text onPress={() => navigate('Register')} style={ styles.forgetPsd }>忘记登录密码</Text>
+                <Text onPress={() => navigate('Register')} style={styles.forgetPsd}>忘记登录密码</Text>
                 <TouchableOpacity activeOpacity={0.2} focusedOpacity={0.5} onPress={this.handleLogin.bind(this)}>
-                    <View style={ styles.button }>
-                        <Text style={{color:'#fff'}}>登录</Text>
+                    <View style={styles.button}>
+                        <Text style={{ color: '#fff' }}>登录</Text>
                     </View>
                 </TouchableOpacity>
-                <Text style={ styles.bottomText }>还没有加入 One Team？<Text onPress={() => navigate('Register')} style={{ color: '#0b9dff' }}>点击这里</Text>加入吧！</Text>
+                <Text style={styles.bottomText}>还没有加入 One Team？<Text onPress={() => navigate('Register')} style={{ color: '#0b9dff' }}>点击这里</Text>加入吧！</Text>
             </View>
         );
     }

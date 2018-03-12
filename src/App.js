@@ -17,13 +17,9 @@ const App = StackNavigator({
 }, {
     initialRouteName: 'Home',
     navigationOptions: {
-      headerStyle: {
-        backgroundColor: '#ffffff',
-        opacity: 0.8,
-      },
-      cardStack: {
-        gesturesEnabled: true
-      }
+      headerStyle: { height: 45, opacity: 0.8, borderBottomWidth: 1, borderBottomColor: '#e2e2e2', elevation: 0 },
+      headerTitleStyle: { fontSize: 16, color: '#333', alignItems: 'center' },
+      cardStack: { gesturesEnabled: true }
     },
     mode: 'card',
     headerMode: 'screen'
