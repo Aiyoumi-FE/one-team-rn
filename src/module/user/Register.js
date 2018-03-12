@@ -1,17 +1,90 @@
 import React, { Component } from 'react';
 import { View, Text, Button, Image, TextInput, StyleSheet, TouchableOpacity, } from 'react-native';
 import RadioModal from 'react-native-radio-master';
+import Toast from 'react-native-root-toast';
+
 
 export default class Register extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            initId: '',
+            email: '', // 邮箱
+            name: '', // 用户昵称
+            pwd: '', // 密码
+            repwd: '', // 确认密码
+            inviteCode: '', // 邀请码
+            inGroup: '0', // 类型（加入团队、创建团队）
         };
     }
 
     static navigationOptions = {
         title: '注册',
+    }
+
+    onSubmit () {
+        // 定义提示框公共样式
+        const tip = (msg) => {
+            Toast.show(msg, {
+                position: Toast.positions.CENTER,
+                backgroundColor: '#09f',
+            })
+        }
+        // 验证
+        const { email, name, pwd, repwd, inviteCode, inGroup, } = this.state;
+        const regExp = {
+            email: /^[\w-]+@[\w-]+\.[a-zA-Z]{2,3}$/,
+            pwd: /^(?![^a-zA-Z]+$)(?!\D+$).{6,12}$/,
+        };
+        if (email === '') {
+            tip('请输入邮箱！');
+            return;
+        }
+        if (!regExp.email.test(email)) {
+            tip('邮箱格式不正确！');
+            return;
+        }
+        if (name === '') {
+            tip('请输入用户昵称！');
+            return;
+        }
+        if (pwd === '') {
+            tip('请输入密码！');
+            return;
+        }
+        if (!regExp.pwd.test(pwd)) {
+            tip('密码长度6-12位，必须包含数字和字母，可包含其他字符！');
+            return;
+        }
+        if (repwd === '') {
+            tip('请再次输入密码！');
+            return;
+        }
+        if (pwd !== repwd ) {
+            tip('2次密码输入不一致！');
+            return;
+        }
+        if (inviteCode === '') {
+            tip('请输入团队邀请码！');
+            return;
+        }
+        fetch('https://mywebsite.com/endpoint/', {
+          method: 'POST',
+          mode: "cors",
+          headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(this.state)
+        }).then((res) => {
+            if (res.success) {
+                this.props.navigation.navigate('Login');
+            } else {
+                tip(res.msg);
+            }
+        })
+        .catch((error) => {
+            tip(error);
+        });
     }
 
     render() {
@@ -26,7 +99,7 @@ export default class Register extends Component {
                     placeholderTextColor="#c8c8c8"
                     underlineColorAndroid="transparent"
                     onChangeText={(email) => this.setState({email})}
-                    value={this.state.text}
+                    value={this.state.email}
                 />
                 <TextInput
                     style={ styles.textInput }
@@ -34,7 +107,7 @@ export default class Register extends Component {
                     placeholderTextColor="#c8c8c8"
                     underlineColorAndroid="transparent"
                     onChangeText={(name) => this.setState({name})}
-                    value={this.state.text}
+                    value={this.state.name}
                 />
                 <TextInput
                     style={ styles.textInput }
@@ -42,7 +115,7 @@ export default class Register extends Component {
                     placeholderTextColor="#c8c8c8"
                     underlineColorAndroid="transparent"
                     onChangeText={(pwd) => this.setState({pwd})}
-                    value={this.state.text}
+                    value={this.state.pwd}
                     secureTextEntry={true}
                 />
                 <TextInput
@@ -51,30 +124,30 @@ export default class Register extends Component {
                     placeholderTextColor="#c8c8c8"
                     underlineColorAndroid="transparent"
                     onChangeText={(repwd) => this.setState({repwd})}
-                    value={this.state.text}
+                    value={this.state.repwd}
                     secureTextEntry={true}
                 />
                 <RadioModal
-                    selectedValue={this.state.initId}
-                    onValueChange={(id,item) => this.setState({initId: id,initItem:item})}
+                    selectedValue={this.state.inGroup}
+                    onValueChange={(id,item) => this.setState({inGroup: id})}
                     style={{ flexDirection:'row',
                       alignItems:'flex-start',
                       backgroundColor:'#ffffff',
                       marginBottom: 15,
                     }}
                 >
-                  <Text value="0">加入团队</Text>
-                  <Text value="1">创建团队</Text>
+                  <Text value="0">创建团队</Text>
+                  <Text value="1">加入团队</Text>
                 </RadioModal>
                 <TextInput
                     style={ styles.textInput }
                     placeholder="团队邀请码"
                     placeholderTextColor="#c8c8c8"
                     underlineColorAndroid="transparent"
-                    onChangeText={(repwd) => this.setState({repwd})}
-                    value={this.state.text}
+                    onChangeText={(inviteCode) => this.setState({inviteCode})}
+                    value={this.state.inviteCode}
                 />
-                <TouchableOpacity onPress={()=>{alert('点击登录')}}>
+                <TouchableOpacity onPress={this.onSubmit.bind(this)}>
                     <View style={styles.button}>
                         <Text style={styles.buttonText}>登录</Text>
                     </View>
@@ -97,7 +170,6 @@ const styles = StyleSheet.create({
     },
     top: {
         paddingBottom: 40,
-        paddingTop: 40,
         alignItems: 'center',
     },
     topimg: {
