@@ -21,7 +21,7 @@ export default class Register extends Component {
         title: '注册',
     }
 
-    onSubmit () {
+    onSubmit() {
         // 定义提示框公共样式
         const tip = (msg) => {
             Toast.show(msg, {
@@ -30,7 +30,7 @@ export default class Register extends Component {
             })
         }
         // 验证
-        const { email, name, pwd, repwd, inviteCode, inGroup, } = this.state;
+        const { email, name, pwd, repwd, inviteCode, inGroup } = this.state;
         const regExp = {
             email: /^[\w-]+@[\w-]+\.[a-zA-Z]{2,3}$/,
             pwd: /^(?![^a-zA-Z]+$)(?!\D+$).{6,12}$/,
@@ -59,7 +59,7 @@ export default class Register extends Component {
             tip('请再次输入密码！');
             return;
         }
-        if (pwd !== repwd ) {
+        if (pwd !== repwd) {
             tip('2次密码输入不一致！');
             return;
         }
@@ -68,13 +68,13 @@ export default class Register extends Component {
             return;
         }
         fetch('https://mywebsite.com/endpoint/', {
-          method: 'POST',
-          mode: "cors",
-          headers: {
-            'Accept': 'application/json',
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify(this.state)
+            method: 'POST',
+            mode: "cors",
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(this.state)
         }).then((res) => {
             if (res.success) {
                 this.props.navigation.navigate('Login');
@@ -82,69 +82,70 @@ export default class Register extends Component {
                 tip(res.msg);
             }
         })
-        .catch((error) => {
-            tip(error);
-        });
+            .catch((error) => {
+                tip(error);
+            });
     }
 
     render() {
         return (
-            <View style={ styles.container }>
-                <View style={ styles.top }>
-                    <Image source={require('@images/graphic.png')} style={ styles.topimg } />
+            <View style={styles.container}>
+                <View style={styles.top}>
+                    <Image source={require('@images/graphic.png')} style={styles.topimg} />
                 </View>
                 <TextInput
-                    style={ styles.textInput }
+                    style={styles.textInput}
                     placeholder="邮箱"
                     placeholderTextColor="#c8c8c8"
                     underlineColorAndroid="transparent"
-                    onChangeText={(email) => this.setState({email})}
+                    onChangeText={(email) => this.setState({ email })}
                     value={this.state.email}
                 />
                 <TextInput
-                    style={ styles.textInput }
+                    style={styles.textInput}
                     placeholder="用户昵称"
                     placeholderTextColor="#c8c8c8"
                     underlineColorAndroid="transparent"
-                    onChangeText={(name) => this.setState({name})}
+                    onChangeText={(name) => this.setState({ name })}
                     value={this.state.name}
                 />
                 <TextInput
-                    style={ styles.textInput }
+                    style={styles.textInput}
                     placeholder="6-12位字母数字密码"
                     placeholderTextColor="#c8c8c8"
                     underlineColorAndroid="transparent"
-                    onChangeText={(pwd) => this.setState({pwd})}
+                    onChangeText={(pwd) => this.setState({ pwd })}
                     value={this.state.pwd}
                     secureTextEntry={true}
                 />
                 <TextInput
-                    style={ styles.textInput }
+                    style={styles.textInput}
                     placeholder="确认密码"
                     placeholderTextColor="#c8c8c8"
                     underlineColorAndroid="transparent"
-                    onChangeText={(repwd) => this.setState({repwd})}
+                    onChangeText={(repwd) => this.setState({ repwd })}
                     value={this.state.repwd}
                     secureTextEntry={true}
                 />
                 <RadioModal
                     selectedValue={this.state.inGroup}
-                    onValueChange={(id,item) => this.setState({inGroup: id})}
-                    style={{ flexDirection:'row',
-                      alignItems:'flex-start',
-                      backgroundColor:'#ffffff',
-                      marginBottom: 15,
+                    onValueChange={(id, item) => this.setState({ inGroup: id })}
+                    style={{
+                        flexDirection: 'row',
+                        alignItems: 'flex-start',
+                        backgroundColor: '#ffffff',
+                        marginBottom: 15,
                     }}
                 >
-                  <Text value="0">创建团队</Text>
-                  <Text value="1">加入团队</Text>
+                    <Text value="0">创建团队</Text>
+                    <Text value="1">加入团队</Text>
                 </RadioModal>
                 <TextInput
-                    style={ styles.textInput }
+                    style={styles.textInput}
                     placeholder="团队邀请码"
                     placeholderTextColor="#c8c8c8"
                     underlineColorAndroid="transparent"
-                    onChangeText={(inviteCode) => this.setState({inviteCode})}
+                    onChangeText={(inviteCode) => this.setState({ inviteCode })}
                     value={this.state.inviteCode}
                 />
                 <TouchableOpacity onPress={this.onSubmit.bind(this)}>
@@ -152,7 +153,7 @@ export default class Register extends Component {
                         <Text style={styles.buttonText}>登录</Text>
                     </View>
                 </TouchableOpacity>
-                <Text style={ styles.bottomText }>已经注册过了？<Text style={{ color: '#0b9dff' }} onPress={() => this.props.navigation.navigate('Login')}>直接登录</Text></Text>
+                <Text style={styles.bottomText}>已经注册过了？<Text style={{ color: '#0b9dff' }} onPress={() => this.props.navigation.navigate('Login')}>直接登录</Text></Text>
             </View>
         );
     }
@@ -161,12 +162,12 @@ export default class Register extends Component {
 const styles = StyleSheet.create({
     container: {
         flexDirection: 'column',
-        flex:1,
-        justifyContent:'center',
+        flex: 1,
+        justifyContent: 'center',
         paddingRight: 20,
         paddingLeft: 20,
         backgroundColor: '#fff',
-        
+
     },
     top: {
         paddingBottom: 40,
