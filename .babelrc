@@ -6,7 +6,8 @@
       [
         {"src": "./src", "expose": "@src"},
         {"src": "./src/images", "expose": "@images"},
-        {"src": "./src/module", "expose": "@module"}
+        {"src": "./src/module", "expose": "@module"},
+        {"src": "./src/utils", "expose": "@utils"}
       ]
     ]
   ]

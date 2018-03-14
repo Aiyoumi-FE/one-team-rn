@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { View, Text, Button, Image, TextInput, StyleSheet, TouchableOpacity, } from 'react-native';
 import RadioModal from 'react-native-radio-master';
 import Toast from 'react-native-root-toast';
-
+import FetchUtils from '@utils/fetch';
 
 export default class Register extends Component {
     constructor(props) {
@@ -67,24 +67,13 @@ export default class Register extends Component {
             tip('请输入团队邀请码！');
             return;
         }
-        fetch('https://mywebsite.com/endpoint/', {
-            method: 'POST',
-            mode: "cors",
-            headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(this.state)
-        }).then((res) => {
-            if (res.success) {
+        FetchUtils.post('http://www.aiyoumi.com/common/getUserImInfo', this.state, (res) => {
+            if (res.ok) {
                 this.props.navigation.navigate('Login');
             } else {
-                tip(res.msg);
+                tip(res)
             }
         })
-            .catch((error) => {
-                tip(error);
-            });
     }
 
     render() {
