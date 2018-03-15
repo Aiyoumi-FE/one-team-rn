@@ -10,10 +10,13 @@ export default class SetUp extends Component {
     _onPressButton() {
         Alert.alert('功能开发中，敬请期待...')
     }
-
-    _toPageSetUp() {
-        this.state.navigator('SetUp');
+    _pagePasswordChange() {
+        this.props.navigation.navigate('PasswordMod')
     }
+    _pagePasswordFind() {
+        this.props.navigation.navigate('PasswordFind')
+    }
+
 
     render() {
         return (
@@ -24,13 +27,13 @@ export default class SetUp extends Component {
                         <Text style={styles.sign}>></Text>
                     </View>
                 </TouchableOpacity>
-                <TouchableOpacity onPress={this._onPressButton}>
+                <TouchableOpacity onPress={this._pagePasswordChange.bind(this)}>
                     <View style={styles.uList}>
                         <Text style={styles.listTxt}>修改密码</Text>
                         <Text style={styles.sign}>></Text>
                     </View>
                 </TouchableOpacity>
-                <TouchableOpacity onPress={this._onPressButton.bind(this)}>
+                <TouchableOpacity onPress={this._pagePasswordFind.bind(this)}>
                     <View style={styles.uList}>
                         <Text style={styles.listTxt}>找回密码</Text>
                         <Text style={styles.sign}>></Text>

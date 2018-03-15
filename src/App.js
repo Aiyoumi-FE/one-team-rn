@@ -3,12 +3,16 @@ import { StackNavigator } from 'react-navigation';
 import TabNav from 'module/common/TabNav';
 import Login from 'module/user/Login';
 import Register from 'module/user/Register';
-import SetUp from 'module/user/SetUp';
+import SetUp from 'module/user/SetUp';  /* ---- 用户管理 ---- */
+import PasswordMod from 'module/user/PasswordMod';  /* ---- 修改密码 ---- */
+import PasswordFind from 'module/user/PasswordFind';  /* ---- 找回密码 ---- */
 
 const Components = {
   Login: { screen: Login, path: 'app/login' },
   Register: { screen: Register, path: 'app/register' },
   SetUp: { screen: SetUp, path: 'app/setup'},
+  PasswordMod: { screen: PasswordMod },
+  PasswordFind: { screen: PasswordFind },
 }
 
 const App = StackNavigator({
