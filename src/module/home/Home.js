@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
-import { View, Text, Image, StyleSheet, TouchableOpacity, FlatList, Alert } from 'react-native';
+import { View, Text, Image, StyleSheet, TouchableOpacity, FlatList, Dimensions, Alert } from 'react-native';
+
+const { width, height } = Dimensions.get('window');
 
 export default class Home extends Component {
     constructor(props) {
@@ -100,8 +102,8 @@ const styles = StyleSheet.create({
     mainContent: {
     },
     gridCell: {
+        width: width / 3,
         marginTop: 0.3,
-        paddingHorizontal: 48,
         paddingVertical: 35,
         borderWidth: 0.5,
         borderColor: '#ccc',
