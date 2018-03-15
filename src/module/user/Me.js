@@ -12,20 +12,24 @@ const { width, height} = Dimensions.get('window')
 export default class Me extends Component {
     constructor(props) {
         super(props);
-        this.state = {};
-        console.log(width)
+
+        this.state = {
+            navigator: props.navigation.navigate
+        };
     }
 
     static navigationOptions = {
         title: '我的',
     }
     // 点击事件的方法
-
-    _onPressButton = () => {
+    _onPressButton() {
         Alert.alert('功能开发中，敬请期待...')
     }
+    _toPageSetUp() {
+        this.state.navigator('SetUp');
+    }
     //  渲染页面
-    _renderHeader = () => {
+    _renderHeader() {
         return(
             <View style={styles.uheader}>
                 <View>
@@ -52,7 +56,7 @@ export default class Me extends Component {
                         <Text style={styles.sign}>></Text>
                     </View>
                 </TouchableOpacity>
-                <TouchableOpacity onPress={this._onPressButton}>
+                <TouchableOpacity onPress={this._toPageSetUp.bind(this)}>
                     <View style={styles.uList}>
                         <Text style={styles.listTxt}>设置</Text>
                         <Text style={styles.sign}>></Text>
@@ -69,7 +73,6 @@ export default class Me extends Component {
     }
 
     render() {
-        const { goBack } = this.props.navigation;
         return (
             <View style={styles.ucenter}>
                 {this._renderHeader()}

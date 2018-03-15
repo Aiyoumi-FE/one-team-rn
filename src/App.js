@@ -3,10 +3,12 @@ import { StackNavigator } from 'react-navigation';
 import TabNav from 'module/common/TabNav';
 import Login from 'module/user/Login';
 import Register from 'module/user/Register';
+import SetUp from 'module/user/SetUp';
 
 const Components = {
   Login: { screen: Login, path: 'app/login' },
   Register: { screen: Register, path: 'app/register' },
+  SetUp: { screen: SetUp, path: 'app/setup'},
 }
 
 const App = StackNavigator({
