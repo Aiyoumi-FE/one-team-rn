@@ -19,7 +19,7 @@ export default class PasswordFind extends Component {
         Alert.alert('功能开发中，敬请期待...')
     }
     _submit() {
-        const { oldPassword, newPassword, newPassword1 } = this.state;
+        const { vcode, email } = this.state;
         // 定义提示框公共样式
         const tip = (msg) => {
             Toast.show(msg, {
@@ -28,14 +28,14 @@ export default class PasswordFind extends Component {
             })
         }
         const regExp = {
-            pwd: /^(?![^a-zA-Z]+$)(?!\D+$).{6,12}$/,
+            email: /^[\w-]+@[\w-]+\.[a-zA-Z]{2,3}$/
         };
         if (vcode === '') {
             tip('请输入验证码');
             return false;
         }
-        if (!regExp.pwd.test(newPassword) ||!regExp.pwd.test(newPassword1)) {
-            tip('新密码长度6-12位，必须包含数字和字母，可包含其他字符！');
+        if (!regExp.email.test(email)) {
+            tip('亲，输入正确的邮箱格式');
             return false;
         }
     }

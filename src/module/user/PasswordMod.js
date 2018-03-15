@@ -77,7 +77,7 @@ export default class PasswordMod extends Component {
                 <View style={styles.submitview}>
                     <TouchableOpacity activeOpacity={0.2} focusedOpacity={0.5} onPress={this._submit.bind(this)}>
                         <View style={styles.button}>
-                            <Text style={{ color: '#fff' }}>登录</Text>
+                            <Text style={{ color: '#fff' }}>保存</Text>
                         </View>
                     </TouchableOpacity>
                 </View>

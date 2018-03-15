@@ -6,22 +6,21 @@ export default class SetUp extends Component {
         title: '用户管理',
     }
 
-    // 点击事件的方法
-    _onPressButton() {
-        Alert.alert('功能开发中，敬请期待...')
-    }
     _pagePasswordChange() {
         this.props.navigation.navigate('PasswordMod')
     }
     _pagePasswordFind() {
         this.props.navigation.navigate('PasswordFind')
     }
+    _pageMeData() {
+        this.props.navigation.navigate('MeData')
+    }
 
 
     render() {
         return (
             <View style={{padding: 10, backgroundColor: '#fff'}}>
-                <TouchableOpacity onPress={this._onPressButton}>
+                <TouchableOpacity onPress={this._pageMeData.bind(this)}>
                     <View style={styles.uList}>
                         <Text style={styles.listTxt}>个人资料</Text>
                         <Text style={styles.sign}>></Text>

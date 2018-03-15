@@ -36,7 +36,7 @@ export default class Me extends Component {
                     <Image source={{uri: userData.avatar}} style={{width: 50, height: 50,borderRadius: 50,}} />
                 </View>
                 <Text style={styles.name}>{userData.userName}</Text>
-                <Text style={styles.email}>{userData.emiil}</Text>
+                <Text style={styles.email}>{userData.email}</Text>
             </View>
         )
     }

@@ -1,4 +1,3 @@
-import { StyleSheet } from 'react-native';
 import { StackNavigator } from 'react-navigation';
 import TabNav from 'module/common/TabNav';
 import Login from 'module/user/Login';
@@ -6,6 +5,7 @@ import Register from 'module/user/Register';
 import SetUp from 'module/user/SetUp';  /* ---- 用户管理 ---- */
 import PasswordMod from 'module/user/PasswordMod';  /* ---- 修改密码 ---- */
 import PasswordFind from 'module/user/PasswordFind';  /* ---- 找回密码 ---- */
+import MeData from 'module/user/MeData';  /* ---- 个人资料修改 ---- */
 
 const Components = {
   Login: { screen: Login, path: 'app/login' },
@@ -13,6 +13,7 @@ const Components = {
   SetUp: { screen: SetUp, path: 'app/setup'},
   PasswordMod: { screen: PasswordMod },
   PasswordFind: { screen: PasswordFind },
+  MeData: { screen: MeData },
 }
 
 const App = StackNavigator({
