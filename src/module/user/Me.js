@@ -1,7 +1,14 @@
 import React, { Component } from 'react';
 import { View, Text, Button, Image, TextInput, StyleSheet, Dimensions, Alert, TouchableOpacity } from 'react-native';
+
+// 引入mobx 数据
+import {observer} from 'mobx-react/native';
+import {UserMsg} from '@src/mobx/userMsg.js'
+
+const userData = new UserMsg();
 const { width, height} = Dimensions.get('window')
 
+@observer
 export default class Me extends Component {
     constructor(props) {
         super(props);
@@ -22,10 +29,10 @@ export default class Me extends Component {
         return(
             <View style={styles.uheader}>
                 <View>
-                    <Image source={{uri: 'http://img.taopic.com/uploads/allimg/140320/235013-14032020515270.jpg'}} style={{width: 50, height: 50,borderRadius: 50,}} />
+                    <Image source={{uri: userData.avatar}} style={{width: 50, height: 50,borderRadius: 50,}} />
                 </View>
-                <Text style={styles.name}>you name</Text>
-                <Text style={styles.email}>you eMail@163.com</Text>
+                <Text style={styles.name}>{userData.userName}</Text>
+                <Text style={styles.email}>{userData.emiil}</Text>
             </View>
         )
     }
