@@ -1,9 +1,9 @@
 import React from 'react';
 import { StyleSheet, Image } from 'react-native';
 import { TabNavigator } from 'react-navigation';
-import Home from '@module/home/Home';
-import Notice from '@module/notice/Notice';
-import Me from '@module/user/Me';
+import Home from 'module/home/Home';
+import Notice from 'module/notice/Notice';
+import Me from 'module/user/Me';
 
 const TabNav = TabNavigator({
     Home: {
@@ -11,7 +11,7 @@ const TabNav = TabNavigator({
         path: 'app/home',
         navigationOptions: {
             tabBarLabel: '首页',
-            tabBarIcon: ({ tintColor }) => (<Image source={require('@images/home.png')} style={[{ tintColor: tintColor }, styles.tabIcon]} />),
+            tabBarIcon: ({ tintColor }) => (<Image source={require('images/home.png')} style={[{ tintColor: tintColor }, styles.tabIcon]} />),
         }
     },
     Notice: {
@@ -19,7 +19,7 @@ const TabNav = TabNavigator({
         path: 'app/notice',
         navigationOptions: {
             tabBarLabel: '通知',
-            tabBarIcon: ({ tintColor }) => (<Image source={require('@images/notice.png')} style={[{ tintColor: tintColor }, styles.tabIcon]} />),
+            tabBarIcon: ({ tintColor }) => (<Image source={require('images/notice.png')} style={[{ tintColor: tintColor }, styles.tabIcon]} />),
         }
     },
     Me: {
@@ -27,7 +27,7 @@ const TabNav = TabNavigator({
         path: 'app/me',
         navigationOptions: {
             tabBarLabel: '我的',
-            tabBarIcon: ({ tintColor }) => (<Image source={require('@images/me.png')} style={[{ tintColor: tintColor }, styles.tabIcon]} />),
+            tabBarIcon: ({ tintColor }) => (<Image source={require('images/me.png')} style={[{ tintColor: tintColor }, styles.tabIcon]} />),
         }
     }
 }, {

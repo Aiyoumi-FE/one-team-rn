@@ -3,7 +3,7 @@ import { View, Text, Button, Image, TextInput, StyleSheet, Dimensions, Alert, To
 
 // 引入mobx 数据
 import {observer} from 'mobx-react/native';
-import {UserMsg} from '@src/mobx/userMsg.js'
+import {UserMsg} from 'src/mobx/userMsg.js'
 
 const userData = new UserMsg();
 const { width, height} = Dimensions.get('window')

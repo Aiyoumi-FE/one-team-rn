@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { View, Text, Button, Image, TextInput, StyleSheet, TouchableOpacity, } from 'react-native';
 import RadioModal from 'react-native-radio-master';
 import Toast from 'react-native-root-toast';
-import FetchUtils from '@utils/fetch';
+import FetchUtils from 'utils/fetch';
 
 export default class Register extends Component {
     constructor(props) {
@@ -80,7 +80,7 @@ export default class Register extends Component {
         return (
             <View style={styles.container}>
                 <View style={styles.top}>
-                    <Image source={require('@images/graphic.png')} style={styles.topimg} />
+                    <Image source={require('images/graphic.png')} style={styles.topimg} />
                 </View>
                 <TextInput
                     style={styles.textInput}

@@ -1,8 +1,8 @@
 import { StyleSheet } from 'react-native';
 import { StackNavigator } from 'react-navigation';
-import TabNav from '@module/common/TabNav';
-import Login from '@module/user/Login';
-import Register from '@module/user/Register';
+import TabNav from 'module/common/TabNav';
+import Login from 'module/user/Login';
+import Register from 'module/user/Register';
 
 const Components = {
   Login: { screen: Login, path: 'app/login' },

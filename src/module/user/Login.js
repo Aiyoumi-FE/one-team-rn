@@ -32,7 +32,7 @@ export default class Login extends Component {
         return (
             <View style={styles.view}>
                 <View style={styles.graphicWrap}>
-                    <Image source={require('@images/graphic.png')} style={styles.graphic} />
+                    <Image source={require('images/graphic.png')} style={styles.graphic} />
                 </View>
                 <TextInput
                     style={styles.textInput}

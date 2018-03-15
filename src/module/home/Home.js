@@ -12,22 +12,22 @@ export default class Home extends Component {
 
         this.gridData = [{
             name: '周报',
-            image: require('@images/home.png'),
+            image: require('images/home.png'),
         }, {
             name: '团队',
-            image: require('@images/notice.png'),
+            image: require('images/notice.png'),
         }, {
             name: '周报',
-            image: require('@images/me.png'),
+            image: require('images/me.png'),
         }, {
             name: '周报',
-            image: require('@images/home.png'),
+            image: require('images/home.png'),
         }, {
             name: '团队',
-            image: require('@images/notice.png'),
+            image: require('images/notice.png'),
         }, {
             name: '周报',
-            image: require('@images/me.png'),
+            image: require('images/me.png'),
         }];
     }
 
