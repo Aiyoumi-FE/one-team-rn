@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {View, Text, Button, TouchableOpacity, Image, TextInput, Alert, StyleSheet} from 'react-native';
 import Toast from "react-native-root-toast";
+import ImagePicker from 'react-native-image-picker';
 
 // 引入mobx 数据
 import { observer, inject } from 'mobx-react'
@@ -14,7 +15,7 @@ export default class MeData extends Component {
             navigator: props.navigation.navigate,
             username: '',
             email: '',
-            avatar: ''
+            avatarSource: require('images/graphic.png')
         };
     }
     static navigationOptions = {
@@ -52,13 +53,54 @@ export default class MeData extends Component {
             this.props.navigation.navigate('SetUp')
         }
     }
+
+    selectPhotoTapped() {
+        const options = {
+            quality: 1.0,
+            maxWidth: 300,
+            maxHeight: 300,
+            storageOptions: {
+                skipBackup: true
+            }
+        };
+
+        ImagePicker.showImagePicker(options, (response) => {
+          console.log('Response = ', response);
+
+          if (response.didCancel) {
+            console.log('User cancelled photo picker');
+          }
+          else if (response.error) {
+            console.log('ImagePicker Error: ', response.error);
+          }
+          else if (response.customButton) {
+            console.log('User tapped custom button: ', response.customButton);
+          }
+          else {
+            let source = { uri: response.uri };
+
+            // You can also display the image using data:
+            // let source = { uri: 'data:image/jpeg;base64,' + response.data };
+
+            this.setState({
+              avatarSource: source
+            });
+          }
+        });
+    }
+
     render() {
         const store = this.props.store
         return (
             <View>
-                <View style={styles.avatar}>
+                <View style={[styles.uList, {paddingTop: 10, paddingBottom: 10,}]}>
                     <Text style={styles.text}>头像</Text>
-                    <Image source={{uri: store.avatar}} style={{width: 50, height: 50,borderRadius: 50,}} />
+                    <TouchableOpacity onPress={this.selectPhotoTapped.bind(this)}>
+                        <View>
+                            <Image style={styles.avatar} source={this.state.avatarSource} />
+                        </View>
+                    </TouchableOpacity>
+                    {/*<Image source={{uri: store.avatar}} style={{width: 50, height: 50,borderRadius: 50,}} />*/}
                 </View>
                 <View style={styles.uList}>
                     <Text style={styles.text}>昵称</Text>
@@ -80,7 +122,6 @@ export default class MeData extends Component {
                         placeholder={store.email}
                         underlineColorAndroid ="transparent"
                     />
-
                 </View>
                 <View style={styles.submitview}>
                     <TouchableOpacity activeOpacity={0.2} focusedOpacity={0.5} onPress={this._save.bind(this)}>
@@ -113,19 +154,15 @@ const styles = StyleSheet.create({
         backgroundColor: '#09f',
     },
     avatar: {
-        height:80,
-        backgroundColor: '#fff',
-        alignItems: 'center',
-        flexDirection: 'row',
-        borderBottomWidth:1,
-        borderBottomColor: '#eee'
+        borderRadius: 50,
+        width: 50,
+        height: 50
     },
     uList: {
-        height:50,
         backgroundColor: '#fff',
         alignItems: 'center',
         flexDirection: 'row',
         borderBottomWidth:1,
-        borderBottomColor: '#eee'
+        borderBottomColor: '#eee',
     }
 });

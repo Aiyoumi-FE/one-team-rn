@@ -10,6 +10,7 @@
     "mobx-react": "^5.0.0",
     "react": "16.2.0",
     "react-native": "0.53.3",
+    "react-native-image-picker": "^0.26.7",
     "react-native-radio-master": "^1.0.1",
     "react-native-root-toast": "^3.0.1",
     "react-navigation": "^1.4.0"
