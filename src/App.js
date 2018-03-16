@@ -1,3 +1,4 @@
+import React  from 'react';
 import { StackNavigator } from 'react-navigation';
 import TabNav from 'module/common/TabNav';
 import Login from 'module/user/Login';
@@ -6,6 +7,11 @@ import SetUp from 'module/user/SetUp';  /* ---- 用户管理 ---- */
 import PasswordMod from 'module/user/PasswordMod';  /* ---- 修改密码 ---- */
 import PasswordFind from 'module/user/PasswordFind';  /* ---- 找回密码 ---- */
 import MeData from 'module/user/MeData';  /* ---- 个人资料修改 ---- */
+
+// 全局注册并注入mobx，这里注明哪些地方用到store
+import {Provider} from 'mobx-react'
+// 获取store实例
+import store from 'src/mobx/store'
 
 const Components = {
   Login: { screen: Login, path: 'app/login' },
@@ -16,7 +22,7 @@ const Components = {
   MeData: { screen: MeData },
 }
 
-const App = StackNavigator({
+const Navigation = StackNavigator({
   Home: { screen: TabNav, path: 'app/home' },
   Notice: { screen: TabNav, path: 'app/notice' },
   Me: { screen: TabNav, path: 'app/me' },
@@ -32,5 +38,16 @@ const App = StackNavigator({
     headerMode: 'screen'
   }
 );
+// =====================全局引用mobx
+
+
+const  App = () => {
+    return (
+        <Provider store={store}>
+            <Navigation/>
+        </Provider>
+
+    );
+}
 
 export default App;

@@ -2,19 +2,16 @@ import React, { Component } from 'react';
 import { View, Text, Button, Image, TextInput, StyleSheet, Dimensions, Alert, TouchableOpacity } from 'react-native';
 
 // 引入mobx 数据
-import {observer} from 'mobx-react/native';
-import {UserMsg} from 'src/mobx/userMsg.js'
-
-const userData = new UserMsg();
+import { observer, inject } from 'mobx-react'
 const { width, height} = Dimensions.get('window')
 
+@inject('store')
 @observer
 export default class Me extends Component {
     constructor(props) {
         super(props);
-
         this.state = {
-            navigator: props.navigation.navigate
+            navigator: props.navigation.navigate,
         };
     }
 
@@ -30,13 +27,14 @@ export default class Me extends Component {
     }
     //  渲染页面
     _renderHeader() {
+        const store = this.props.store
         return(
             <View style={styles.uheader}>
                 <View>
-                    <Image source={{uri: userData.avatar}} style={{width: 50, height: 50,borderRadius: 50,}} />
+                    <Image source={{uri: store.avatar}} style={{width: 50, height: 50,borderRadius: 50,}} />
                 </View>
-                <Text style={styles.name}>{userData.userName}</Text>
-                <Text style={styles.email}>{userData.email}</Text>
+                <Text style={styles.name} >{store.userName}</Text>
+                <Text style={styles.email}>{store.email}</Text>
             </View>
         )
     }

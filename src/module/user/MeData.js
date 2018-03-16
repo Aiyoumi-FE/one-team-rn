@@ -1,13 +1,11 @@
 import React, {Component} from 'react';
 import {View, Text, Button, TouchableOpacity, Image, TextInput, Alert, StyleSheet} from 'react-native';
-
-// 引入mobx 数据
-import {observer} from 'mobx-react/native';
-import {UserMsg} from 'src/mobx/userMsg.js'
 import Toast from "react-native-root-toast";
 
-const userData = new UserMsg();
+// 引入mobx 数据
+import { observer, inject } from 'mobx-react'
 
+@inject('store')
 @observer
 export default class MeData extends Component {
     constructor(props) {
@@ -25,6 +23,7 @@ export default class MeData extends Component {
 
     _save() {
         const { username, email } = this.state;
+        const store = this.props.store
         // 定义提示框公共样式
         const tip = (msg) => {
             Toast.show(msg, {
@@ -44,21 +43,22 @@ export default class MeData extends Component {
             return false;
         }
         // 此处调用后台
-        if(username !== userData.username || email !== userData.email ) {
-            let postname =  username !== userData.username? username: userData.username;
-            let postemail =  email !== userData.email? email: userData.email
+        if(username !== store.username || email !== store.email ) {
+            let postname =  username !== store.username? username: store.username;
+            let postemail =  email !== store.email? email: store.email
 
-            userData.changeUserName(postname)
-            userData.changeEmail(postemail)
+            store.changeUserName(postname)
+            store.changeEmail(postemail)
             this.props.navigation.navigate('SetUp')
         }
     }
     render() {
+        const store = this.props.store
         return (
             <View>
                 <View style={styles.avatar}>
                     <Text style={styles.text}>头像</Text>
-                    <Image source={{uri: userData.avatar}} style={{width: 50, height: 50,borderRadius: 50,}} />
+                    <Image source={{uri: store.avatar}} style={{width: 50, height: 50,borderRadius: 50,}} />
                 </View>
                 <View style={styles.uList}>
                     <Text style={styles.text}>昵称</Text>
@@ -66,7 +66,7 @@ export default class MeData extends Component {
                         style={{height: 50, width: 250}}
                         onChangeText={(username) => this.setState({username})}
                         value={this.state.username}
-                        placeholder={userData.userName}
+                        placeholder={store.userName}
                         underlineColorAndroid ="transparent"
                     />
 
@@ -77,7 +77,7 @@ export default class MeData extends Component {
                         style={{height: 50, width: 250}}
                         onChangeText={(email) => this.setState({email})}
                         value={this.state.email}
-                        placeholder={userData.email}
+                        placeholder={store.email}
                         underlineColorAndroid ="transparent"
                     />
 
