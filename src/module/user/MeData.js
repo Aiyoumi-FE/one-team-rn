@@ -12,9 +12,9 @@ export default class MeData extends Component {
         super(props);
         this.state = {
             navigator: props.navigation.navigate,
-            username: '',
-            email: '',
-            avatar: ''
+            username: props.store.userName,
+            email: props.store.email,
+            avatar: props.store.avatar
         };
     }
     static navigationOptions = {
@@ -34,22 +34,18 @@ export default class MeData extends Component {
         const regExp = {
             email: /^[\w-]+@[\w-]+\.[a-zA-Z]{2,3}$/
         };
-        if (username === '' && userData.username ==='') {
-            tip('请输入正确的昵称');
-            return false;
-        }
-        if (!regExp.email.test(email) && !regExp.email.test(userData.email)) {
+        if (!regExp.email.test(email)) {
             tip('亲，输入正确的邮箱格式');
             return false;
         }
         // 此处调用后台
         if(username !== store.username || email !== store.email ) {
-            let postname =  username !== store.username? username: store.username;
-            let postemail =  email !== store.email? email: store.email
+            let postname =  username !== ''? username: store.userName;
+            let postemail =  email !== ''? email: store.email
 
             store.changeUserName(postname)
             store.changeEmail(postemail)
-            this.props.navigation.navigate('SetUp')
+            this.props.navigation.goBack();
         }
     }
     render() {
