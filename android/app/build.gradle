@@ -110,14 +110,14 @@ android {
     /**
     * 打包配置：打包时放开下面的注释
     */
-    // signingConfigs {
-    //     release {
-    //         storeFile file(MYAPP_RELEASE_STORE_FILE)
-    //         storePassword MYAPP_RELEASE_STORE_PASSWORD
-    //         keyAlias MYAPP_RELEASE_KEY_ALIAS
-    //         keyPassword MYAPP_RELEASE_KEY_PASSWORD
-    //     }
-    // }
+     signingConfigs {
+         release {
+         //   storeFile file(MYAPP_RELEASE_STORE_FILE)
+         //   storePassword MYAPP_RELEASE_STORE_PASSWORD
+         //    keyAlias MYAPP_RELEASE_KEY_ALIAS
+         //    keyPassword MYAPP_RELEASE_KEY_PASSWORD
+        }
+     }
     splits {
         abi {
             reset()
@@ -133,7 +133,7 @@ android {
             /**
             * 打包配置：打包时放开下面的注释
             */
-            // signingConfig signingConfigs.release
+            //  signingConfig signingConfigs.release
         }
     }
     // applicationVariants are e.g. debug, release
@@ -147,6 +147,8 @@ android {
                 output.versionCodeOverride =
                         versionCodes.get(abi) * 1048576 + defaultConfig.versionCode
             }
+            // 打包添加包名和版本号
+            // output.outputFile = new File(output.outputFile.parent, "oneteam-" + buildType.name + "-v" + defaultConfig.versionName + "-" + defaultConfig.versionCode + ".apk" );
         }
     }
 }
