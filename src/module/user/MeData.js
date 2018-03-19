@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {View, Text, Button, TouchableOpacity, Image, TextInput, Alert, StyleSheet} from 'react-native';
 import Toast from "react-native-root-toast";
-import ImagePicker from 'react-native-image-picker';
+import imagePicker from 'utils/imagePicker';
 
 // 引入mobx 数据
 import { observer, inject } from 'mobx-react'
@@ -51,37 +51,10 @@ export default class MeData extends Component {
     }
 
     selectPhotoTapped() {
-        const options = {
-            quality: 1.0,
-            maxWidth: 300,
-            maxHeight: 300,
-            storageOptions: {
-                skipBackup: true
-            }
-        };
-
-        ImagePicker.showImagePicker(options, (response) => {
-          console.log('Response = ', response);
-
-          if (response.didCancel) {
-            console.log('User cancelled photo picker');
-          }
-          else if (response.error) {
-            console.log('ImagePicker Error: ', response.error);
-          }
-          else if (response.customButton) {
-            console.log('User tapped custom button: ', response.customButton);
-          }
-          else {
-            let source = { uri: response.uri };
-
-            // You can also display the image using data:
-            // let source = { uri: 'data:image/jpeg;base64,' + response.data };
-
+        imagePicker.imagePickerOne((res) => {
             this.setState({
-              avatarSource: source
+              avatarSource: { uri: res.uri }
             });
-          }
         });
     }
 
@@ -96,7 +69,6 @@ export default class MeData extends Component {
                             <Image style={styles.avatar} source={this.state.avatarSource} />
                         </View>
                     </TouchableOpacity>
-                    {/*<Image source={{uri: store.avatar}} style={{width: 50, height: 50,borderRadius: 50,}} />*/}
                 </View>
                 <View style={styles.uList}>
                     <Text style={styles.text}>昵称</Text>
