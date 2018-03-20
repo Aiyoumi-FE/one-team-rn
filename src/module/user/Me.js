@@ -31,7 +31,7 @@ export default class Me extends Component {
         return(
             <View style={styles.uheader}>
                 <View>
-                    <Image source={{uri: store.avatar}} style={{width: 50, height: 50,borderRadius: 50,}} />
+                    <Image source={store.avatar} style={{width: 50, height: 50,borderRadius: 50,}} />
                 </View>
                 <Text style={styles.name} >{store.userName}</Text>
                 <Text style={styles.email}>{store.email}</Text>
@@ -48,7 +48,7 @@ export default class Me extends Component {
                         <Text style={styles.sign}>></Text>
                     </View>
                 </TouchableOpacity>
-                <TouchableOpacity onPress={this._onPressButton}>
+                <TouchableOpacity onPress={() => this.state.navigator('MeFocus')}>
                     <View style={styles.uList}>
                         <Text style={styles.listTxt}>我的关注</Text>
                         <Text style={styles.sign}>></Text>
