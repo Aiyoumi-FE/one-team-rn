@@ -8,6 +8,8 @@ import PasswordMod from 'module/user/PasswordMod';  /* ---- 修改密码 ---- */
 import PasswordFind from 'module/user/PasswordFind';  /* ---- 找回密码 ---- */
 import MeData from 'module/user/MeData';  /* ---- 个人资料修改 ---- */
 import MeFocus from 'module/user/MeFocus';  /* ---- 我的关注 ---- */
+import AddMeFocus from 'module/user/AddMeFocus';  /* ---- 添加关注 ---- */
+
 
 // 全局注册并注入mobx，这里注明哪些地方用到store
 import {Provider} from 'mobx-react'
@@ -21,7 +23,8 @@ const Components = {
   PasswordMod: { screen: PasswordMod },
   PasswordFind: { screen: PasswordFind },
   MeData: { screen: MeData },
-  MeFocus: { screen: MeFocus }
+  MeFocus: { screen: MeFocus },
+  AddMeFocus: { screen: AddMeFocus },
 }
 
 const Navigation = StackNavigator({

@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {View, Text, Button, TouchableOpacity, Image, TextInput, Alert, StyleSheet, FlatList} from 'react-native';
+import {View, Text, Button, TouchableOpacity, Image, TextInput, Alert, StyleSheet, FlatList, navigator, BackAndroid} from 'react-native';
 import Toast from "react-native-root-toast";
 
 // 引入mobx 数据
@@ -10,6 +10,7 @@ import { observer, inject } from 'mobx-react'
 export default class MeData extends Component {
     constructor(props) {
         super(props);
+        this.handleBack = this.handleBack.bind(this);
         this.state = {
             navigator: props.navigation.navigate,
         };
@@ -17,17 +18,25 @@ export default class MeData extends Component {
     static navigationOptions = ({ navigation }) => {
         const params = navigation.state.params || {};
         return {
-            title: '我的关注',
-            headerRight: (
-                <TouchableOpacity onPress={params.addFocus}>
-                    <Text style={{color: '#09f', marginRight: 10,}}>添加</Text>
-                </TouchableOpacity>
-             
-            ),
+            title: '添加关注',
         };
     }
-    componentWillMount() {
-        this.props.navigation.setParams({ addFocus: () => { this.state.navigator('AddMeFocus') } });
+    componentDidMount() {
+        BackAndroid.addEventListener('hardwareBackPress', this.handleBack);
+    }
+    componentWillUnmount() {
+        BackAndroid.removeEventListener('hardwareBackPress', this.handleBack);
+    }
+    handleBack() {
+        console.log(1111)
+        alert(111)
+        /*var navigator = this.navigator;
+        if (navigator && navigator.getCurrentRoutes().length > 1) {
+            navigator.pop();
+            return true;
+        }else{
+            return false;
+        }*/
     }
     showCell(index, item) {
         return (
@@ -41,7 +50,7 @@ export default class MeData extends Component {
                         </View>
                     </View>
                     <TouchableOpacity onPress={this.cancelFocus.bind(this)}>
-                        <Text style={styles.gridBtn}>取消关注</Text>
+                        <Text style={styles.gridBtn}>+ 关注</Text>
                     </TouchableOpacity>
                 </View>
             </TouchableOpacity>
@@ -57,12 +66,6 @@ export default class MeData extends Component {
     }
     toUser() {
         // alert('进入关注人界面')
-    }
-    _header = () => {
-        return <Text>这是头部</Text>;
-    }
-    _footer = () => {
-        return <Text>这是尾部</Text>;
     }
     render() {
         const store = this.props.store
@@ -82,7 +85,7 @@ export default class MeData extends Component {
                         style={styles.searchInput}
                         underlineColorAndroid="transparent"
                         maxLength={20} 
-                        placeholder="搜索已关注的用户名"
+                        placeholder="搜索用户名"
                         placeholderTextColor="#ccc"
                         onChangeText={this.onChanegeTextKeyword.bind(this)}
                     />
@@ -99,8 +102,6 @@ export default class MeData extends Component {
                         //设置垂直布局（）
                         horizontal={false}
                         ItemSeparatorComponent={() => { return <View style={{height:1,backgroundColor:'#eee',}} />; }}
-                        ListHeaderComponent={this._header}
-                        ListFooterComponent={this._footer}
                     />
                 </View>
             </View>
@@ -155,12 +156,12 @@ const styles = StyleSheet.create({
         marginRight: 10,
     },
     gridBtn: {
-        borderWidth: 1,
-        borderColor: '#eee',
         paddingTop: 5,
         paddingBottom: 5,
         paddingLeft: 10,
         paddingRight: 10,
         borderRadius: 5,
+        backgroundColor: '#09f',
+        color: '#fff',
     },
 });
